@@ -1,11 +1,11 @@
 const repositorioTransacoes = require("../../repositorios/transacoes");
 
-const listarTransacoesPorId = {
+const listarTransacoesPorUsuario = {
   async execute(id) {
     try {
-      const trasacoesPorId = await repositorioTransacoes.findByPk(id);
+      const trasacoesPorId = await repositorioTransacoes.findTransUser(id);
 
-      console.log(trasacoesPorId);
+      //console.log(trasacoesPorId);
 
       if (!trasacoesPorId) return Error("Transações não encontradas!");
 
@@ -16,4 +16,4 @@ const listarTransacoesPorId = {
     }
   },
 };
-module.exports = listarTransacoesPorId;
+module.exports = listarTransacoesPorUsuario;

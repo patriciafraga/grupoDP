@@ -1,0 +1,27 @@
+const servicolistarTransacaoPorId = require("../../servicos/transacoes/servListarPorIdTransacao");
+
+
+const controladorListarPorIdTransacao = {
+  async handle(req, res) {
+    try {
+      const { id } = req.params;
+
+      const { id: usuario_id } = req.perfilUsuario;
+
+      const transacoesPorId = await servicolistarTransacaoPorId.execute(
+        id,
+        usuario_id
+      );
+
+      // const transacoesCadastradas = {
+      //     ...transacoesPorId,
+      //   };
+
+      return res.status(200).json(transacoesPorId);
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({ mensagem: "Erro interno do servidor" });
+    }
+  },
+};
+module.exports = controladorListarPorIdTransacao;

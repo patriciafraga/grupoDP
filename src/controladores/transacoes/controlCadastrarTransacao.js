@@ -29,7 +29,7 @@ const controladorCadastrarTransacao = {
       });
 
       const params = [categoria_id];
-      console.log(params);
+      //console.log(params);
       const sql = `
       SELECT descricao FROM categorias WHERE id = $1`;
       const { rows } = await pool.query(sql, params);
@@ -40,6 +40,7 @@ const controladorCadastrarTransacao = {
       };
 
       req.transacao = transacaoCadastrada;
+      
       return res.status(201).json(transacaoCadastrada);
     } catch (error) {
       console.log(error.message);

@@ -21,4 +21,22 @@ const validarCategoria = async (req, res, next) => {
   next();
 };
 
-module.exports = validarCategoria;
+// const extrairCategoriaPorId = async function () {
+//   const id = categoria_id;
+
+//   const sql = `
+//         SELECT descricao FROM categorias 
+//         WHERE id = $1`;
+
+//   const params = [id];
+
+//   const nomeDaCategoria = await pool.query(sql, params);
+//   if (categoriaExiste.rowCount < 1)
+//     return res
+//       .status(404)
+//       .json({ mensagem: `Categoria inválida ou inexistente!` });
+
+//   const nomeDaCategoria = categoriaExiste.rows[0].descricao;
+// };
+
+module.exports = { validarCategoria };
