@@ -1,15 +1,13 @@
 const servicoListarTransacaoUsuario = require("../../servicos/transacoes/servListarTransacaoporUsuario");
 
-const controladorListarTransacoesPorUsuario= {
+const controladorListarTransacoesPorUsuario = {
   async handle(req, res) {
     try {
       const { id } = req.perfilUsuario;
-
+      
       const transacoesPorId = await servicoListarTransacaoUsuario.execute(id);
-    
-      // const transacoesCadastradas = {
-      //     ...transacoesPorId,
-      //   };
+
+      console.log(transacoesPorId);
 
       return res.status(200).json(transacoesPorId);
     } catch (error) {

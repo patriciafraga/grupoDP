@@ -1,6 +1,5 @@
 const servicolistarTransacaoPorId = require("../../servicos/transacoes/servListarPorIdTransacao");
 
-
 const controladorListarPorIdTransacao = {
   async handle(req, res) {
     try {
@@ -8,16 +7,14 @@ const controladorListarPorIdTransacao = {
 
       const { id: usuario_id } = req.perfilUsuario;
 
-      const transacoesPorId = await servicolistarTransacaoPorId.execute(
+      const transacaoEncontrada = await servicolistarTransacaoPorId.execute(
         id,
         usuario_id
       );
 
-      // const transacoesCadastradas = {
-      //     ...transacoesPorId,
-      //   };
-
-      return res.status(200).json(transacoesPorId);
+      // if (!transacaoEncontrada || transacaoEncontrada.length < 1)
+      //   return res.status(400).json({ mensagem: "Transação não encontrada." });
+      return res.status(200).json(transacaoEncontrada);
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({ mensagem: "Erro interno do servidor" });

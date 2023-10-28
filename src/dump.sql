@@ -40,3 +40,16 @@ insert into categorias(descricao) values
 ('Vendas'),
 ('Outras receitas'),
 ('Outras despesas');
+
+`select transacoes.id, 
+transacoes.tipo,
+transacoes.descricao,
+transacoes.valor,
+transacoes.data,
+transacoes.usuario_id,
+transacoes.categoria_id,
+categorias.descricao as categoria_nome
+from transacoes
+inner join categorias
+on transacoes.categoria_id = categorias.id
+where transacoes.usuario_id = 20;`

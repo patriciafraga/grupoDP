@@ -40,7 +40,7 @@ const controladorCadastrarTransacao = {
       };
 
       req.transacao = transacaoCadastrada;
-      
+
       return res.status(201).json(transacaoCadastrada);
     } catch (error) {
       console.log(error.message);

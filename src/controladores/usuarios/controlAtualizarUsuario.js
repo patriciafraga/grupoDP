@@ -11,6 +11,7 @@ const controladorAtualizarUsuario = {
         return res.status(400).json({
           mensagem: `Todos os campos devem ser informados(nome, email, senha).`,
         });
+      console.log(id);
       const sql = `
       SELECT email FROM usuarios 
       WHERE id != $1 AND email = $2`;
@@ -30,7 +31,7 @@ const controladorAtualizarUsuario = {
         senha: senhaValida,
       });
 
-      const { senha: _, ...atualizacao } = usuarioAtualizado;
+      //const { senha: _, ...atualizacao } = usuarioAtualizado;
 
       return res.status(201).send();
     } catch (error) {

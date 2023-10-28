@@ -4,7 +4,6 @@ const cadastrarTransacao = {
   async execute(dados) {
     try {
       const transacaoCadastrada = await repositorioTransacoes.create(dados);
-        console.log(transacaoCadastrada);
 
       if (!transacaoCadastrada) return  res.status(400).json({mensagem: "Não foi possível cadastrar o usuário!"}); //ver código de status
 

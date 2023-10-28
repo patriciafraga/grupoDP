@@ -5,8 +5,6 @@ const listarTransacoesPorUsuario = {
     try {
       const trasacoesPorId = await repositorioTransacoes.findTransUser(id);
 
-      //console.log(trasacoesPorId);
-
       if (!trasacoesPorId) return Error("Transações não encontradas!");
 
       return trasacoesPorId;
