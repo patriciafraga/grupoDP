@@ -20,13 +20,13 @@ const controladorCriarUsuario = {
       const { rowCount } = await pool.query(sqlValidar, params);
 
       if (rowCount === 1)
-        return res
-          .status(404)
-          .json({
-            mensagem: `Já existe usuário cadastrado com o e-mail informado.`,
-          });
+        return res.status(404).json({
+          mensagem: `Já existe usuário cadastrado com o e-mail informado.`,
+        });
 
-      const senhaValida = await hash(senha, 10);
+      const salt = randomInt(7, 10);
+
+      const senhaValida = await hash(senha, salt);
       const usuarioCriado = await servico.execute({
         nome,
         email,
