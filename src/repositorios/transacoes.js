@@ -67,25 +67,25 @@ WHERE transacoes.id = $1 and transacoes.usuario_id = $2`;
     return transacaoEncontrada.rows;
   },
 
-    update: async function (id, transacaoAlterada) {
-      const { descricao, valor, data, categoria_id, tipo } = transacaoAlterada;
+  update: async function (id, transacaoAlterada) {
+    const { descricao, valor, data, categoria_id, tipo } = transacaoAlterada;
 
-      const sqlTransacao = `UPDATE transacoes SET   descricao = $1, valor = $2, data = $3, categoria_id = $4, tipo = $5 WHERE id = $6 RETURNING *`;
+    const sqlTransacao = `UPDATE transacoes SET   descricao = $1, valor = $2, data = $3, categoria_id = $4, tipo = $5 WHERE id = $6 RETURNING *`;
 
-      const values = [descricao, valor, data, categoria_id, tipo, id];
+    const values = [descricao, valor, data, categoria_id, tipo, id];
 
-      const response = await pool.query(sqlTransacao, values);
+    const response = await pool.query(sqlTransacao, values);
 
-      return response.rows[0];
-    },
+    return response.rows[0];
+  },
 
-    delete: async function (id) {
-      const sqlTransacao = `DELETE FROM transacoes WHERE id = $1 RETURNING *`;
+  delete: async function (id) {
+    const sqlTransacao = `DELETE FROM transacoes WHERE id = $1 RETURNING *`;
 
-      const response = await pool.query(sqlTransacao, [id]);
+    const response = await pool.query(sqlTransacao, [id]);
 
-      return response.rows[0];
-    },
+    return response.rows[0];
+  },
 };
 
 module.exports = repositorioTransacoes;

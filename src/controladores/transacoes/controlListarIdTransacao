@@ -12,8 +12,6 @@ const controladorListarPorIdTransacao = {
         usuario_id
       );
 
-      // if (!transacaoEncontrada || transacaoEncontrada.length < 1)
-      //   return res.status(400).json({ mensagem: "Transação não encontrada." });
       return res.status(200).json(transacaoEncontrada);
     } catch (error) {
       console.log(error.message);

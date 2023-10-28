@@ -18,13 +18,13 @@ const validarUsuario = async (req, res) => {
     const params = [email];
 
     const usuarioPorEmail = await pool.query(sql, params);
-    
+
     if (usuarioPorEmail.rowCount < 1)
       return res.status(404).json({ mensagem: `Email ou senha inválidos` });
-    
+
     //primeiro arg senha body, segundo arg senha BD
     const senhaValidada = await compare(senha, usuarioPorEmail.rows[0].senha); //boolean
-    
+
     if (!senhaValidada)
       return res.status(404).json({ mensagem: `Email ou senha inválidos` });
 
@@ -37,7 +37,6 @@ const validarUsuario = async (req, res) => {
     const { senha: s, ...usuario } = usuarioPorEmail.rows[0];
 
     return res.status(200).json({ usuario, token });
-  
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ mensagem: `Erro interno do servidor!` });

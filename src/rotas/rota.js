@@ -25,8 +25,21 @@ rota.put("/usuario", controladorAtualizarUsuario.handle);
 rota.get("/categoria", controladorListarCategorias.handle);
 rota.post("/transacao", validarCategoria, controladorCadastrarTransacao.handle);
 rota.get("/transacao", controladorListarTransacoesPorUsuario.handle);
-rota.get("/transacao/:id", buscarTransacao, controladorListarPorIdTransacao.handle);
-rota.put('/transacao/:id', buscarTransacao, validarCategoria, controladorAlterarTransacao.handle);
-rota.delete('/transacao/:id', buscarTransacao, controladorExcluirTransacao.handle);
+rota.get(
+  "/transacao/:id",
+  buscarTransacao,
+  controladorListarPorIdTransacao.handle
+);
+rota.put(
+  "/transacao/:id",
+  buscarTransacao,
+  validarCategoria,
+  controladorAlterarTransacao.handle
+);
+rota.delete(
+  "/transacao/:id",
+  buscarTransacao,
+  controladorExcluirTransacao.handle
+);
 
 module.exports = rota;

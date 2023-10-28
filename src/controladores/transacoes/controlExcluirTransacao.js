@@ -9,7 +9,7 @@ const controladorExcluirTransacao = {
 
       console.log(transacaoAExcluir);
 
-      return res.status(200).json(transacaoAExcluir);
+      return res.status(200).send();
     } catch (error) {
       console.log(error.message);
       return res.status(500).json({ mensagem: "Erro interno do servidor" });

@@ -2,7 +2,6 @@ const pool = require("../../conexao/conexao");
 const servico = require("../../servicos/usuarios/servCriarUsuario");
 const { hash } = require("bcrypt");
 
-
 const controladorCriarUsuario = {
   async handle(req, res) {
     try {
@@ -18,10 +17,14 @@ const controladorCriarUsuario = {
 
       const params = [email];
 
-      const {rowCount} = await pool.query(sqlValidar, params);
-      
+      const { rowCount } = await pool.query(sqlValidar, params);
+
       if (rowCount === 1)
-        return res.status(404).json({ mensagem: `Já existe usuário cadastrado com o e-mail informado.` });
+        return res
+          .status(404)
+          .json({
+            mensagem: `Já existe usuário cadastrado com o e-mail informado.`,
+          });
 
       const senhaValida = await hash(senha, 10);
       const usuarioCriado = await servico.execute({
