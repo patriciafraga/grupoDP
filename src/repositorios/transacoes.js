@@ -46,9 +46,25 @@ where transacoes.usuario_id = $1;`;
     return transacoesPK.rows;
   },
 
-  findTransByPk: async function (id, usuario_id) {
+  findStatements: async function (usuario_id) {
     const sqlTransacao = `
-    select transacoes.id, 
+    SELECT
+  SUM(CASE WHEN transacoes.tipo = 'entrada' 
+      THEN valor ELSE 0 END) AS entradas,
+  SUM(CASE WHEN tipo = 'saida' 
+      THEN valor ELSE 0 END) AS saidas,
+  SUM(CASE WHEN tipo = 'entrada' THEN valor ELSE 0 END) - SUM(CASE WHEN   tipo = 'saida' THEN valor ELSE 0 END) AS saldo
+FROM transacoes
+WHERE transacoes.usuario_id = $1;`;
+    const params = [usuario_id];
+
+    const transacaoEncontrada = await pool.query(sqlTransacao, params);
+    console.log(transacaoEncontrada);
+    return transacaoEncontrada.rows;
+  },
+  findTransByPk: async function (id) {
+    const usuario_id = id;
+    const sqlTransacao = `select transacoes.id, 
 transacoes.tipo,
 transacoes.descricao,
 transacoes.valor,
@@ -59,12 +75,11 @@ categorias.descricao as categoria_nome
 from transacoes
 inner join categorias
 on transacoes.categoria_id = categorias.id
-WHERE transacoes.id = $1 and transacoes.usuario_id = $2`;
-    const params = [id, usuario_id];
+where transacoes.id = $1;`;
 
-    const transacaoEncontrada = await pool.query(sqlTransacao, params);
-    console.log(transacaoEncontrada);
-    return transacaoEncontrada.rows;
+    const params = [usuario_id];
+    const transacoesPK = await pool.query(sqlTransacao, params);
+    return transacoesPK.rows;
   },
 
   update: async function (id, transacaoAlterada) {

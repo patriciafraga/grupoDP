@@ -12,6 +12,7 @@ const buscarTransacao = require("../intermediarios/buscarTransacao");
 const servAlterarTransacao = require("../servicos/transacoes/servAlterarTransacao");
 const controladorAlterarTransacao = require("../controladores/transacoes/controlAlterarTransacao");
 const controladorExcluirTransacao = require("../controladores/transacoes/controlExcluirTransacao");
+const controladorObterExtratoPorUsuario = require("../controladores/transacoes/controlObterExtrato");
 
 const rota = express.Router();
 rota.use(express.json());
@@ -25,6 +26,7 @@ rota.put("/usuario", controladorAtualizarUsuario.handle);
 rota.get("/categoria", controladorListarCategorias.handle);
 rota.post("/transacao", validarCategoria, controladorCadastrarTransacao.handle);
 rota.get("/transacao", controladorListarTransacoesPorUsuario.handle);
+rota.get("/transacao/extrato", controladorObterExtratoPorUsuario.handle);
 rota.get(
   "/transacao/:id",
   buscarTransacao,
