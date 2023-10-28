@@ -1,6 +1,7 @@
 const pool = require("../../conexao/conexao");
 const servico = require("../../servicos/usuarios/servCriarUsuario");
 const { hash } = require("bcrypt");
+const {randomInt} = require('node:crypto');
 
 const controladorCriarUsuario = {
   async handle(req, res) {
