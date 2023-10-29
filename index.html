@@ -679,28 +679,18 @@
                       class="accordion-button collapsed"
                       type="button"
                       data-bs-toggle="collapse"
-                      data-bs-target="#faq2-content-3"
+                      data-bs-target="#faq-content-3"
                     >
-                      Como foi estruturada a API DinDin?
+                    Como foi estruturada a API DinDin?
                     </button>
                   </h2>
                   <div
-                    id="faq2-content-3"
+                    id="faq-content-3"
                     class="accordion-collapse collapse"
-                    data-bs-parent="#faqlist2"
+                    data-bs-parent="#faqlist1"
                   >
                     <div class="accordion-body">
-                      A API RESTful, DinDin, teve como objetivo gerar um modelo
-                      de API de controle de finanças. Os instrumentos para sua
-                      criação foram o VSCode, o Postgres - Sistema de
-                      Gerenciamento de Banco de Dados -, e o Insomnia - para
-                      testar as requisições, os recursos e as respostas. As
-                      requisições foram feitas por meio das URI e eventuais
-                      parâmetros. A camada de rotas recebia as requisições e as
-                      encaminhava para a camada de controladores que, por sua
-                      vez, distribuiam as requisições aos respectivos serviços,
-                      onde deveriam ser executadas as regras de negócio. A API
-                      DinDin deveria
+                      A API RESTful, DinDin, teve como objetivo gerar um modelo de API de controle de finanças. Os instrumentos para sua criação foram o VSCode, o Postgres - Sistema de Gerenciamento de Banco de Dados -, e o Insomnia - para testar as requisições, os recursos e as respostas. As requisições foram feitas por meio das URI e eventuais parâmetros. A camada de rotas recebia as requisições e as encaminhava para a camada de controladores que, por sua vez, distribuiam as requisições aos respectivos serviços, onde deveriam ser executadas as regras de negócio.
                     </div>
                   </div>
                 </div>
@@ -726,15 +716,7 @@
                     class="accordion-collapse collapse"
                     data-bs-parent="#faqlist2"
                   >
-                    <div class="accordion-body">
-                      realizar cadastro, fazer login, detalhar seu perfil,
-                      editar seu perfil; - com as categorias de receitas e
-                      despesas: listar a categorias de receitas e despesas; -
-                      com suas transações: listar transações, detalhar transação
-                      específica, cadastrar transação, editar transação, remover
-                      transação, obter extrato de transações e, por fim, filtrar
-                      transações por categoria. Essas operações foram realizadas
-                      de modo seguro, por meio de senha criptografada e token de
+                    <div class="accordion-body"> A API DinDin teve como funcionalidades, no que respeita aos dados pessoais do usuário realizar cadastro, fazer login, detalhar seu perfil, editar seu perfil; - com as categorias de receitas e despesas: listar a categorias de receitas e despesas; - com suas transações: listar transações, detalhar transação específica, cadastrar transação, editar transação, remover transação, obter extrato de transações e, por fim, filtrar  transações por categoria. Essas operações foram realizadas de modo seguro, por meio de senha criptografada e token de
                       autenticação de cada usuário.
                     </div>
                   </div>
@@ -748,8 +730,7 @@
                       data-bs-toggle="collapse"
                       data-bs-target="#faq2-content-2"
                     >
-                      E a comunicação das rotas com os controladores e com o
-                      banco de dados?
+                      E a comunicação das rotas com os controladores e com o banco de dados?
                     </button>
                   </h2>
                   <div
@@ -760,11 +741,7 @@
                     <div class="accordion-body">
                       Para fazer a conexão dos endpoints/rotas com os
                       controladores e com o banco de dados, foi necessário
-                      implantar uma camada de serviços. A camada de serviços
-                      ficou responsável por aplicar as regras de negócio
-                      (cadastrar, alterar, listar, excluir recursos) - sendo uma
-                      camada intermediária, ficando entre os repositórios e os
-                      controladores.
+                      implantar uma camada de serviços. A camada de serviços  ficou responsável por aplicar as regras de negócio (cadastrar, alterar, listar, excluir recursos) - sendo uma camada intermediária, ficando entre os repositórios e os controladores.
                     </div>
                   </div>
                 </div>
