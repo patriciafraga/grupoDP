@@ -25,25 +25,38 @@ const repositorioTransacoes = {
 
     return response;
   },
-
-  findTransUser: async function (id) {
+  findTransPorCategoria: async function (id, filtro) {
     const usuario_id = id;
-    const sqlTransacao = `select transacoes.id, 
-transacoes.tipo,
-transacoes.descricao,
-transacoes.valor,
-transacoes.data,
-transacoes.usuario_id,
-transacoes.categoria_id,
-categorias.descricao as categoria_nome
-from transacoes
-inner join categorias
-on transacoes.categoria_id = categorias.id
-where transacoes.usuario_id = $1;`;
 
-    const params = [usuario_id];
-    const transacoesPK = await pool.query(sqlTransacao, params);
-    return transacoesPK.rows;
+    let sqlTransacao = `SELECT
+      t.id,
+      t.tipo,
+      t.descricao,
+      t.valor,
+      t.data,
+      t.usuario_id,
+      t.categoria_id,
+      c.descricao AS categoria_nome
+      FROM transacoes t
+      INNER JOIN categorias c
+      ON t.categoria_id = c.id
+      WHERE t.usuario_id = $1`;
+
+    let params = [usuario_id];
+    let descricao = filtro;
+
+    if (descricao) {
+      const arrayfiltros = descricao.map((item) => `%${item}%`);
+      params.push(arrayfiltros);
+      sqlTransacao += ` AND c.descricao ilike ANY($2::text[])`;
+    }
+    //console.log(sqlTransacao);
+
+    const transacoesPorCategoriaouUsuario = await pool.query(
+      sqlTransacao,
+      params
+    );
+    return transacoesPorCategoriaouUsuario.rows;
   },
 
   findStatements: async function (usuario_id) {

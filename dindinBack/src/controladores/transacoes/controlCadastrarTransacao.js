@@ -29,7 +29,7 @@ const controladorCadastrarTransacao = {
       });
 
       const params = [categoria_id];
-      //console.log(params);
+      
       const sql = `
       SELECT descricao FROM categorias WHERE id = $1`;
       const { rows } = await pool.query(sql, params);

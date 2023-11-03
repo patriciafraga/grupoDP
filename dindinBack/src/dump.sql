@@ -17,7 +17,7 @@ create table transacoes(
   tipo text not null,
   descricao text not null,
   valor integer not null,
-  data date,
+  data TIMESTAMPTZ(3) NOT NULL DEFAULT NOW(),
   usuario_id integer references usuarios(id),
   categoria_id integer references categorias(id)  
 );
